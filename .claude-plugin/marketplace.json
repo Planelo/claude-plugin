@@ -1,15 +1,18 @@
 {
     "name": "planelo-marketplace",
-    "description": "Official marketplace for Planelo Claude Code plugins.",
+    "description": "Official marketplace for Planelo plugins",
     "owner": {
         "name": "Planelo",
-        "homepage": "https://planelo.app"
+        "email": "hello@planelo.app"
     },
     "plugins": [
         {
             "name": "planelo",
-            "description": "Project management integration for Planelo.",
-            "source": ".."
+            "description": "Planelo integration",
+            "source": {
+                "source": "github",
+                "repo": "Planelo/claude-plugin"
+            }
         }
     ]
 }
