@@ -10,8 +10,8 @@
             "name": "planelo",
             "description": "Project management integration for Planelo.",
             "source": {
-                "source": "github",
-                "repo": "Planelo/claude-plugin"
+                "source": "url",
+                "url": "https://github.com/Planelo/claude-plugin.git"
             }
         }
     ]
