@@ -1,0 +1,10 @@
+{
+  "name": "planelo",
+  "description": "Project management for Claude Code using Planelo API.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Codex"
+  },
+  "homepage": "https://planelo.app",
+  "repository": "https://github.com/planelo/claude-plugin"
+}
