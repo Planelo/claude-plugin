@@ -1,5 +1,5 @@
 {
-    "name": "Planelo Marketplace",
+    "name": "planelo-marketplace",
     "description": "Official marketplace for Planelo Claude Code plugins.",
     "owner": {
         "name": "Planelo",
@@ -10,7 +10,7 @@
             "name": "planelo",
             "description": "Project management integration for Planelo.",
             "source": {
-                "type": "github",
+                "source": "github",
                 "repo": "Planelo/claude-plugin"
             }
         }
