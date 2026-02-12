@@ -2,7 +2,7 @@
 
 **Seamlessly integrate Planelo project management into your Claude Code workflow.**
 
-This plugin empowers Claude to act as your intelligent project manager. It connects directly to your [Planelo](https://planelo.app) account, allowing you to manage projects, track tasks, and maintain project context without ever leaving your terminal.
+This plugin empowers Claude to act as your intelligent project manager. It connects directly to your [Planelo](https://planelo.app/?ref=Github) account, allowing you to manage projects, track tasks, and maintain project context without ever leaving your terminal.
 
 ## ✨ Key Features
 

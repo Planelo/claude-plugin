@@ -114,8 +114,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             projectId: { type: "string" },
             title: { type: "string" },
-            description: { type: "string" },
-            status: { type: "string", enum: ["idea", "in_progress", "done"] },
+            body: { type: "string", description: "Detailed description of the task" },
+            status: { type: "string", enum: ["idea", "in_progress", "done"], default: "idea" },
+            priority: { type: "string", enum: ["low", "medium", "high"], default: "medium" },
+            tags: { type: "array", items: { type: "string" } },
           },
           required: ["projectId", "title"],
         },
@@ -128,8 +130,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             id: { type: "string" },
             title: { type: "string" },
-            description: { type: "string" },
+            body: { type: "string" },
             status: { type: "string", enum: ["idea", "in_progress", "done"] },
+            priority: { type: "string", enum: ["low", "medium", "high"] },
+            tags: { type: "array", items: { type: "string" } },
           },
           required: ["id"],
         },
@@ -183,7 +187,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return { content: [{ type: "text", text: JSON.stringify(res.data.ideas, null, 2) }] };
       }
       case "create_idea": {
-        const res = await httpClient.post("/ideas", { ...args, source: "Claude Plugin" });
+        const payload = { ...args, source: "Claude Plugin" };
+        const res = await httpClient.post("/ideas", payload);
         return { content: [{ type: "text", text: `Created idea: ${res.data.idea.title} (ID: ${res.data.idea.id})` }] };
       }
       case "update_idea": {
