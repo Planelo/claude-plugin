@@ -47,6 +47,19 @@ claude /plugin marketplace add Planelo/planelo-plugins
 
 See the [marketplace README](../../README.md) for detailed instructions.
 
+### Quick Setup (Recommended)
+
+After installation, in Claude Code run:
+```
+/planelo-setup
+```
+
+This interactive guide will help you:
+- Check if your API key is configured
+- Get your API key from Planelo settings
+- Set it up for immediate use
+- Select your project to work on
+
 ---
 
 ## ⚙️ Configuration
