@@ -1,104 +1,73 @@
-# Planelo Claude Plugin 🚀
+# Planelo Plugins Marketplace
 
-**Seamlessly integrate Planelo project management into your Claude Code workflow.**
+A marketplace of Claude Code plugins for Planelo project management.
 
-This plugin empowers Claude to act as your intelligent project manager. It connects directly to your [Planelo](https://planelo.app/?ref=Github) account, allowing you to manage projects, track tasks, and maintain project context without ever leaving your terminal.
+## Available Plugins
 
-## ✨ Key Features
+### 🚀 [Planelo](./plugins/planelo/)
 
-### 🛒 Project Management
-*   **List & Select**: Automatically detects your projects. If you have only one, it auto-selects it. If you have multiple, it asks you which one to work on.
-*   **Create & Edit**: Create new projects or update existing details (name, description, color) on the fly.
-*   **Archive/Delete**: Remove projects you no longer need.
+Seamlessly integrate Planelo project management into your Claude Code workflow. Manage projects, track tasks, and maintain project context without leaving your terminal.
 
-### ✅ Task & Idea Tracking
-*   **Manage Ideas**: List tasks by status (`idea`, `in_progress`, `done`).
-*   **Quick Add**: "Remind me to fix the login bug" -> creates a task immediately.
-*   **Status Updates**: Move tasks through their lifecycle as you complete them in code.
-*   **Cleanup**: Delete tasks that are no longer relevant.
-
-### 🧠 Project Brain Integration
-*   **Context Awareness**: Claude can read your project's "Brain" (AI context) to understand architectural decisions and notes.
-*   **Knowledge Updates**: Tell Claude to "Update the brain with what we decided about the database," and it will save it to Planelo.
-
-### 🤖 Intelligent Agent
-*   **Proactive**: The `Planelo Manager` agent proactively checks for your API key and guides you through setup.
-*   **Contextual**: All changes made via this plugin are marked with the source **"Claude Plugin"** in Planelo, so you know exactly where they came from.
+**Features:**
+- 🛒 Project management (list, create, edit, archive)
+- ✅ Task & idea tracking
+- 🧠 Project Brain integration for AI context
+- 🤖 Intelligent Planelo Manager agent
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
-*   **Claude Code** installed (`npm install -g @anthropic-ai/claude-code`)
-*   **Planelo API Key** (Get it from your Planelo settings)
+- **Claude Code** installed (`npm install -g @anthropic-ai/claude-code`)
+- **Planelo API Key** (Get it from your Planelo account settings)
 
-### Installation from GitHub
-
-Clone this repository and install it directly into Claude Code:
+### Step 1: Add Marketplace
 
 ```bash
-git clone https://github.com/Planelo/claude-plugin.git
-cd claude-plugin
+claude /plugin marketplace add Planelo/planelo-plugins
 ```
 
-Then in Claude Code run:
+### Step 2: Install Plugin
+
+```bash
+claude /plugin install planelo@planelo-plugins
 ```
-/plugin install .
-```
 
----
+### Step 3: Set API Key
 
-## ⚙️ Configuration
-
-Before using the plugin, you must set your Planelo API key as an environment variable.
-
-**Mac/Linux:**
 ```bash
 export PLANELO_API_KEY=your_api_key_here
 ```
 
-**Windows (PowerShell):**
-```powershell
-$env:PLANELO_API_KEY="your_api_key_here"
+Then restart Claude Code (`/clear` or exit and restart).
+
+---
+
+## Plugin Details
+
+For detailed information about the Planelo plugin, see [plugins/planelo/README.md](./plugins/planelo/README.md)
+
+---
+
+## Repository Structure
+
+```
+planelo-plugins/
+├── plugins/              # Anthropic-maintained plugins
+│   └── planelo/
+│       ├── .claude-plugin/
+│       │   └── plugin.json
+│       ├── .mcp.json
+│       ├── agents/
+│       ├── skills/
+│       ├── mcp/
+│       └── README.md
+└── external_plugins/     # Third-party plugins (future)
 ```
 
-*Tip: Add this to your shell profile (`.zshrc` or `.bashrc`) to keep it persistent.*
-
 ---
 
-## 💡 Usage Examples
+## License
 
-Once installed, simply start talking to Claude about your projects. The `Planelo Manager` agent will activate automatically.
-
-**Starting a session:**
-> "Let's work on the iOS app today."
-> *(Claude lists tasks for the iOS project)*
-
-**Managing tasks:**
-> "Add a new task to implement Dark Mode."
-> "Mark the 'Fix crash' task as done."
-> "What are my open tasks in the Marketing project?"
-
-**Using Project Brain:**
-> "What does the Project Brain say about our color palette?"
-> "Update the brain: We are switching our primary database to PostgreSQL."
-
----
-
-## 🛠 Troubleshooting
-
-**"PLANELO_API_KEY is not set"**
-*   Ensure you have exported the key in your terminal session before starting Claude.
-*   Restart Claude (`/clear` or exit and restart) after setting the key.
-
-**"Project not found"**
-*   Ask Claude to `list projects` to see exactly what IDs and Names are available.
-
----
-
-## 🏗 Architecture
-This plugin uses the **Model Context Protocol (MCP)** to securely bridge Claude Code with the Planelo API.
-*   **MCP Server**: Node.js based server (`mcp/index.js`)
-*   **Agent**: Custom `Planelo Manager` persona (`agents/manager/AGENT.md`)
-*   **Source**: [GitHub Repository](https://github.com/Planelo/claude-plugin)
+See each plugin's directory for license information.
