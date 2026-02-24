@@ -1,13 +1,11 @@
 {
-    "mcpServers": {
-        "planelo": {
-            "command": "node",
-            "args": [
-                "${CLAUDE_PLUGIN_ROOT}/mcp/index.js"
-            ],
-            "env": {
-                "PLANELO_API_KEY": ""
-            }
+    "planelo": {
+        "command": "node",
+        "args": [
+            "mcp/index.js"
+        ],
+        "env": {
+            "PLANELO_API_KEY": "${PLANELO_API_KEY}"
         }
     }
 }

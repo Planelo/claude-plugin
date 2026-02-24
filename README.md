@@ -33,20 +33,18 @@ This plugin empowers Claude to act as your intelligent project manager. It conne
 *   **Claude Code** installed (`npm install -g @anthropic-ai/claude-code`)
 *   **Planelo API Key** (Get it from your Planelo settings)
 
-### Option 1: Install via Marketplace (Recommended)
-Add the Planelo marketplace to your Claude configuration:
+### Installation from GitHub
 
-```bash
-claude /plugin marketplace add Planelo/claude-plugin
-claude /plugin install planelo
-```
-
-### Option 2: Local Installation (For Development)
-Clone this repository and install it directly:
+Clone this repository and install it directly into Claude Code:
 
 ```bash
 git clone https://github.com/Planelo/claude-plugin.git
-claude /plugin install ./claude-plugin
+cd claude-plugin
+```
+
+Then in Claude Code run:
+```
+/plugin install .
 ```
 
 ---
