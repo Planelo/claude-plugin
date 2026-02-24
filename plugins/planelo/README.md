@@ -51,7 +51,7 @@ See the [marketplace README](../../README.md) for detailed instructions.
 
 After installation, in Claude Code run:
 ```
-/planelo-setup
+/setup
 ```
 
 This interactive guide will help you:
