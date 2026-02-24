@@ -1,5 +1,7 @@
 ---
-description: An agent that helps you manage your Planelo projects.
+name: Planelo Manager
+description: An agent that helps you manage your Planelo projects and set up your API key on first run
+auto-activate: true
 ---
 # Planelo Manager Agent
 
