@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 
 const API_KEY = process.env.PLANELO_API_KEY;
-const BASE_URL = "https://api.planelo.app/api";
+const BASE_URL = "https://planelo.app/v1";
 
 const server = new Server(
   {
