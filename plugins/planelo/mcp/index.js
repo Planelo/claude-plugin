@@ -69,7 +69,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: "Archive/Delete a project",
         inputSchema: {
           type: "object",
-          properties: { id: { type: "string" } },
+          properties: {
+            id: { type: "string" },
+            archive: { type: "boolean", description: "Archive instead of delete (default: true)" }
+          },
           required: ["id"],
         },
       },
@@ -171,8 +174,19 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return { content: [{ type: "text", text: `Created project: ${res.data.project.name}` }] };
       }
       case "update_project": {
-        await httpClient.patch(`/projects/${args.id}`, args);
+        const updateData = { ...args };
+        delete updateData.id;
+        await httpClient.patch(`/projects/${args.id}`, updateData);
         return { content: [{ type: "text", text: "Project updated." }] };
+      }
+      case "delete_project": {
+        const method = args.archive !== false ? "PATCH" : "DELETE";
+        if (method === "PATCH") {
+          await httpClient.patch(`/projects/${args.id}`, { archived: true });
+        } else {
+          await httpClient.delete(`/projects/${args.id}`);
+        }
+        return { content: [{ type: "text", text: args.archive !== false ? "Project archived." : "Project deleted." }] };
       }
       case "get_brain": {
         const res = await httpClient.get(`/projects/${args.projectId}/brain`);
@@ -187,17 +201,19 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return { content: [{ type: "text", text: JSON.stringify(res.data.ideas, null, 2) }] };
       }
       case "create_idea": {
-        const payload = { ...args, source: "Claude Plugin" };
+        const payload = { ...args, source: "Codex" };
         const res = await httpClient.post("/ideas", payload);
-        return { content: [{ type: "text", text: `Created idea: ${res.data.idea.title} (ID: ${res.data.idea.id})` }] };
+        return { content: [{ type: "text", text: `✅ Tracked in Planelo: ${res.data.idea.title}` }] };
       }
       case "update_idea": {
-        await httpClient.patch(`/ideas/${args.id}`, args);
-        return { content: [{ type: "text", text: "Idea updated." }] };
+        const updateData = { ...args, source: "Codex" };
+        delete updateData.id;
+        await httpClient.patch(`/ideas/${args.id}`, updateData);
+        return { content: [{ type: "text", text: "✅ Idea updated." }] };
       }
       case "delete_idea": {
-        await httpClient.delete(`/ideas/${args.id}`);
-        return { content: [{ type: "text", text: "Idea deleted." }] };
+        await httpClient.delete(`/ideas/${args.id}`, { data: { source: "Codex" } });
+        return { content: [{ type: "text", text: "✅ Idea deleted." }] };
       }
       default:
         throw new Error(`Unknown tool: ${name}`);
