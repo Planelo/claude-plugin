@@ -1,8 +1,8 @@
 {
     "planelo": {
-        "command": "node",
+        "command": "bash",
         "args": [
-            "mcp/index.js"
+            "mcp/start.sh"
         ],
         "env": {
             "PLANELO_API_KEY": "${PLANELO_API_KEY}"
