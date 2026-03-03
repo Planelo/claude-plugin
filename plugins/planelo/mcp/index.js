@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 
 const API_KEY = process.env.PLANELO_API_KEY;
-const BASE_URL = "https://planelo.app/v1";
+const BASE_URL = "https://api.planelo.app/api";
 
 const server = new Server(
   {
@@ -201,18 +201,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return { content: [{ type: "text", text: JSON.stringify(res.data.ideas, null, 2) }] };
       }
       case "create_idea": {
-        const payload = { ...args, source: "Codex" };
+        const payload = { ...args, source: "Claude Plugin" };
         const res = await httpClient.post("/ideas", payload);
         return { content: [{ type: "text", text: `✅ Tracked in Planelo: ${res.data.idea.title}` }] };
       }
       case "update_idea": {
-        const updateData = { ...args, source: "Codex" };
+        const updateData = { ...args, source: "Claude Plugin" };
         delete updateData.id;
         await httpClient.patch(`/ideas/${args.id}`, updateData);
         return { content: [{ type: "text", text: "✅ Idea updated." }] };
       }
       case "delete_idea": {
-        await httpClient.delete(`/ideas/${args.id}`, { data: { source: "Codex" } });
+        await httpClient.delete(`/ideas/${args.id}`, { data: { source: "Claude Plugin" } });
         return { content: [{ type: "text", text: "✅ Idea deleted." }] };
       }
       default:
